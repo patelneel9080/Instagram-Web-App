@@ -7,6 +7,7 @@ import 'package:instagram/firebase_options.dart';
 import 'package:instagram/responsive_layout/mobilescreen_layout.dart';
 import 'package:instagram/responsive_layout/responsive_layout.dart';
 import 'package:instagram/responsive_layout/webscreen_layout.dart';
+import 'package:instagram/screens/home_screen.dart';
 import 'package:instagram/splashscreen.dart';
 import 'package:instagram/utils/colors.dart';
 
@@ -85,9 +86,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, snapShot) {
           if (snapShot.connectionState == ConnectionState.active) {
             if (snapShot.hasData) {
-              return  ResponsiveLayout(
-                webScreenLayout: WebScreenLayout(),
-                mobileScreenLayout: MobileScreenLayout(),);
+              return  HomeScreen();
             } else if (snapShot.hasError) {
               return LoginPage();
             } else {

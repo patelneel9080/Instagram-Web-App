@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:instagram/Pages/signup_page.dart';
+import 'package:instagram/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Pages/loginpage.dart';
@@ -122,7 +123,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> with TickerProviderSt
                          onTap: () {},
                          cursorColor: Colors.black54,
                          controller: _usernameController,
-                         style: const TextStyle(fontWeight: FontWeight.w400),
+                         style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black),
                          decoration: InputDecoration(
                            alignLabelWithHint: true,
                            border: InputBorder.none,
@@ -146,7 +147,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> with TickerProviderSt
                        SizedBox(height: size.height / 54),
                        TextField(
                          enabled: true,
-                         controller: _passwordController,
+                         controller: _passwordController,style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black),
                          onTap: () {},
                          cursorColor: Colors.black,
                          autocorrect: true,
@@ -186,7 +187,9 @@ class _WebScreenLayoutState extends State<WebScreenLayout> with TickerProviderSt
                            ),
                          ),
                          onPressed: () async {
-                           // Your onPressed logic
+
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+
                          },
                          child: Text("Login",style: TextStyle(color: Colors.white),),
                        ),

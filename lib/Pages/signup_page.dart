@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram/Pages/continue_page.dart';
+import 'package:instagram/Pages/loginpage.dart';
+import 'package:instagram/screens/home_screen.dart';
 
 import '../resources/auth_resources.dart';
 import '../responsive_layout/mobilescreen_layout.dart';
@@ -64,10 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return ResponsiveLayout(
-                webScreenLayout: WebScreenLayout(),
-                mobileScreenLayout: MobileScreenLayout(),
-              );
+              return HomeScreen();
             },
           ),
         );}
@@ -125,7 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 child: SizedBox(
                   width: 350,
-                  height: size.height/1.2,
+                  height: size.height/1.3,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
@@ -145,7 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 : const CircleAvatar(
                               radius: 64,
                               backgroundImage: AssetImage(
-                                "assets/default.jpeg",
+                                "assets/Images/google_logo.png",
                               ),
                             ),
                             Positioned(
@@ -174,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onTap: () {},
                           cursorColor: Colors.black54,
                           controller: _userNameController,
-                          style: const TextStyle(fontWeight: FontWeight.w400),
+                          style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black),
                           decoration: InputDecoration(
                             alignLabelWithHint: true,
                             border: InputBorder.none,
@@ -200,7 +200,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onTap: () {},
                           cursorColor: Colors.black54,
                           controller: _emailController,
-                          style: const TextStyle(fontWeight: FontWeight.w400),
+                          style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black),
                           decoration: InputDecoration(
                             alignLabelWithHint: true,
                             border: InputBorder.none,
@@ -227,7 +227,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onTap: () {},
                           cursorColor: Colors.black54,
                           controller: _bioController,
-                          style: const TextStyle(fontWeight: FontWeight.w400),
+                          style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black),
                           decoration: InputDecoration(
                             alignLabelWithHint: true,
                             border: InputBorder.none,
@@ -252,7 +252,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         TextField(
                           enabled: true,
                           controller: _passwordController,
-                          onTap: () {},
+                          onTap: () {},style: const TextStyle(fontWeight: FontWeight.w400,color: Colors.black),
                           cursorColor: Colors.black,
                           autocorrect: true,
                           obscureText: true,
@@ -343,8 +343,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),), child: Text("Login in with Google",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w500,fontSize: 16),)),
                         SizedBox(height: size.height/85,),
-                        TextButton(onPressed: () {}, child: Text("Forgot Password?",style: TextStyle(color: Colors.black),))
-                      ],
+                               ],
                     ),
                   ),
                 ),
@@ -362,12 +361,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("Don't have an account?",style: TextStyle(color: Colors.black),),
+                      Text("Already have an account?",style: TextStyle(color: Colors.black),),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen(),));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
                           },
-                          child: Text("Sign up",style: TextStyle(color: Colors.blueAccent),)),
+                          child: Text("Sign In",style: TextStyle(color: Colors.blueAccent),)),
                     ],
                   ),
                 ),

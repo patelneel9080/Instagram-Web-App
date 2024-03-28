@@ -1,11 +1,12 @@
 import 'dart:developer' as log;
 import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:instagram/resources/storage_method.dart';
 
-
 import '../model/user_model.dart';
+
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -32,7 +33,7 @@ class AuthMethods {
         );
 
         String photoUrl = await StorageMethods()
-            .uploadImageToStorage('profilePics', file, false);
+            .uploadeImageToStorage('profilePics', file, false);
 
         //calling userModel
         UsersModel userModel = UsersModel(
