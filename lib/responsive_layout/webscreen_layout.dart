@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:instagram/Pages/signup_page.dart';
+import 'package:instagram/responsive_layout/mobilescreen_layout.dart';
 import 'package:instagram/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -188,7 +189,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> with TickerProviderSt
                          ),
                          onPressed: () async {
 
-                             Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => MobileScreenLayout(),));
 
                          },
                          child: Text("Login",style: TextStyle(color: Colors.white),),

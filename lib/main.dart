@@ -1,17 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/Pages/loginpage.dart';
-import 'package:instagram/firebase_options.dart';
+import 'package:instagram/provider/user_provider.dart';
 import 'package:instagram/responsive_layout/mobilescreen_layout.dart';
 import 'package:instagram/responsive_layout/responsive_layout.dart';
 import 'package:instagram/responsive_layout/webscreen_layout.dart';
-import 'package:instagram/screens/home_screen.dart';
-import 'package:instagram/splashscreen.dart';
 import 'package:instagram/utils/colors.dart';
-
-import 'Pages/continue_page.dart';
+import 'package:provider/provider.dart';
 
 /*
 web       1:645408821072:web:dabc590a0f9d2d6a312655
@@ -76,36 +72,45 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      title: 'Instagram',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapShot) {
-          if (snapShot.connectionState == ConnectionState.active) {
-            if (snapShot.hasData) {
-              return  HomeScreen();
-            } else if (snapShot.hasError) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Instagram',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark()
+            .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapShot) {
+            if (snapShot.connectionState == ConnectionState.active) {
+              if (snapShot.hasData) {
+                return ResponsiveLayout(
+                  webScreenLayout: WebScreenLayout(),
+                  mobileScreenLayout: MobileScreenLayout(),
+                );
+              } else if (snapShot.hasError) {
+                return LoginPage();
+              } else {
+                return ResponsiveLayout(
+                  webScreenLayout: WebScreenLayout(),
+                  mobileScreenLayout: MobileScreenLayout(),
+                );
+              }
+            } else if (snapShot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (!snapShot.hasData) {
               return LoginPage();
             } else {
-              return ResponsiveLayout(
-                webScreenLayout: WebScreenLayout(),
-                mobileScreenLayout: MobileScreenLayout(),);
+              return Text(
+                snapShot.error.toString(),
+              );
             }
-          } else if (snapShot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (!snapShot.hasData) {
-            return  LoginPage();
-          } else {
-            return Text(
-              snapShot.error.toString(),
-            );
-          }
-        },
+          },
+        ),
       ),
     );
   }

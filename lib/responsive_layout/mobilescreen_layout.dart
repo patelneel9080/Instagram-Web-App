@@ -61,7 +61,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         children: <Widget>[
-          HomeScreen(),
+          const HomeScreen(),
           Container(
             alignment: Alignment.center,
             child: Icon(
@@ -78,14 +78,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               color: Colors.green[400],
             ),
           ),
-          Container(
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.folder_rounded,
-              size: 56,
-              color: Colors.blue[400],
-            ),
-          ),
+          const AccountScreen()
           // Container(
           //   alignment: Alignment.center,
           //   child: Icon(
@@ -104,8 +97,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             outlinedIcon: Icons.home_outlined,
           ),
           BarItem(
-              filledIcon: Icons.search,
-              outlinedIcon: Icons.search_outlined),
+              filledIcon: Icons.search, outlinedIcon: Icons.search_outlined),
           BarItem(
             filledIcon: Icons.add_box,
             outlinedIcon: Icons.add_box_outlined,
@@ -114,7 +106,9 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           //   filledIcon: Icons.favorite,
           //   outlinedIcon: Icons.favorite_outline,
           // ),
-          BarItem(filledIcon: Icons.account_circle, outlinedIcon: Icons.account_circle_outlined)
+          BarItem(
+              filledIcon: Icons.account_circle,
+              outlinedIcon: Icons.account_circle_outlined)
         ],
         selectedIndex: selectedIndex,
         onItemSelected: (int index) {

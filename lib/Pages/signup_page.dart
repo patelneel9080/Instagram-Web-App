@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:instagram/Pages/continue_page.dart';
+
 import 'package:instagram/Pages/loginpage.dart';
 import 'package:instagram/screens/home_screen.dart';
 

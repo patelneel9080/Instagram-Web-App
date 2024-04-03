@@ -1,4 +1,7 @@
-class UsersModel{
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class UsersModel {
   final String username;
   final String email;
   final String password;
@@ -17,14 +20,25 @@ class UsersModel{
     required this.photoUrl,
   });
 
-  Map<String,dynamic> toJson() =>
-      {
-        "username" : username,
-        "email" : email,
-        "password" : password,
-        "bio" : bio,
-        "followers" : followers,
-        "following" : following,
-        "photoUrl" : photoUrl,
+  Map<String, dynamic> toJson() => {
+        "username": username,
+        "email": email,
+        "password": password,
+        "bio": bio,
+        "followers": followers,
+        "following": following,
+        "photoUrl": photoUrl,
       };
+  static UsersModel fromSnap(DocumentSnapshot snap) {
+    var snapShot = snap.data() as Map<String, dynamic>;
+    return UsersModel(
+      username: snapShot['username'],
+      email: snapShot['email'],
+      password: snapShot['password'],
+      bio: snapShot['bio'],
+      followers: snapShot['followers'],
+      following: snapShot['following'],
+      photoUrl: snapShot['photoUrl'],
+    );
+  }
 }

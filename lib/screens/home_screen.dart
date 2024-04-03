@@ -1,23 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
-class HomeScreen extends StatefulWidget {
-
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int selectedIndex = 0;
-  late PageController pageController;
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController(initialPage: selectedIndex);
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child:const CircleAvatar(
                           radius: 32,
                           backgroundImage: AssetImage(
-                            "assets/Images/google_logo.png",
+                            "assets/images/Instagram.png",
                           ),
                         ),
                       ),
